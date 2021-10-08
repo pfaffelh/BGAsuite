@@ -1,0 +1,14 @@
+#' Data for 115 AIMs from the VISAGE BASIC TOOL; this dataset can serve as the test data
+#'
+#' @docType data
+#'
+#' @usage data(VISAGE.BASIC.TOOL.EGDP)
+#'
+#' @references Xavier, C., M. de la Puente, A. Mosquera-Miguel, A. Freire-Aradas, V. Kalamara, A. Vidaki, T. E Gross, A. Revoir, E. Pośpiech, E. Kartasińska, M. Spólnicka, W. Branicki, C. E Ames, P. M Schneider, C. Hohoff, M. Kayser, C. Phillips, and W. Parson (2020). Development and validation of the VISAGE AmpliSeq basic tool to predict appearance and ancestry from DNA. Forensic Sci Int Genet 48, 102336
+#' (\href{https://pubmed.ncbi.nlm.nih.gov/32619960/}{PubMed})
+#'
+#' @source \href{http://mathgene.usc.es/snipper/VISAGE%20Basic%20Tool%20ancestry%20panel%20Training%20Set.xlsx}{Snipper homepage, EGDP sheet}
+#'
+#' @examples
+#' data(VISAGE.BASIC.TOOL.EGDP)
+"VISAGE.BASIC.TOOL.EGDP"

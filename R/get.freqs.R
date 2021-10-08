@@ -1,0 +1,30 @@
+#' Obtaining allele frequencies from allele count data
+#'
+#' @usage get.freqs(sample, samLoc)
+#' @param sample An N x M matrix with entries AA,..., TT. If N = 1, sample can also be a vector. 
+#' @param samLoc A vector of length N giving the locations of all N samples. unique(training.samLoc) gives all different geographical locations of the data. We set K = length(unique(training.samLoc)).
+#'
+#' @return A K x 4 x M array, where entry (k,i,m) is the allele frequency of allele i in population k at marker m. 
+#'
+#' @examples
+#' sample = forenseq.snipper.reference$sample
+#' samLoc = forenseq.snipper.reference$samLoc
+#' get.freqs(sample, samLoc)
+#'
+#' sample = VISAGE.BASIC.TOOL.snipper.reference$sample
+#' samLoc = VISAGE.BASIC.TOOL.snipper.reference$samLoc
+#' get.freqs(sample, samLoc)
+#'
+#' @export
+
+get.freqs<-function(sample, samLoc) {
+  y = get.y(sample)
+  pops = unique(samLoc)
+  res = array(0, dim = c(length(pops), 4, length(y[1,1,])), dimnames=list(pops, c("A", "C", "G", "T"), names(y[1,1,])))
+  res[,"A",] = t(simplify2array(by(y[,"A",],samLoc,colMeans,na.rm=TRUE))) / 2
+  res[,"C",] = t(simplify2array(by(y[,"C",],samLoc,colMeans,na.rm=TRUE))) / 2
+  res[,"G",] = t(simplify2array(by(y[,"G",],samLoc,colMeans,na.rm=TRUE))) / 2
+  res[,"T",] = t(simplify2array(by(y[,"T",],samLoc,colMeans,na.rm=TRUE))) / 2
+  res
+}
+

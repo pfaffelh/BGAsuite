@@ -1,0 +1,31 @@
+#' is.biallelic
+#' 
+#' A function to check if the data is biallelic
+#'
+#' @return Either a binary variable or ...
+#' @export
+#'
+#' @examples
+#' is.biallelic()
+
+# sample must be a matrix
+# output is TRUE or FALSE, and a list of FALSE/TRUE and non-biallelic SNPs
+is.biallelic<-function(sample, SNP.return=FALSE) {
+  res = TRUE
+  nonbi.SNPs = NULL
+  for(AIM in 1:ncol(sample)) {
+    loc = as.vector(sample[,AIM])
+    loc = loc[!is.na(loc)]
+    if(length(loc)) {
+      loc = unlist(strsplit(loc, ","))
+      loc = unlist(strsplit(loc, ""))
+    }
+    if(length(unique(loc))>2) {
+      res = FALSE
+      nonbi.SNPs = c(nonbi.SNPs, AIM)
+    }
+  }
+  if(SNP.return) res = list(res = res, nonbi.SNPs = nonbi.SNPs)
+  res
+}
+
